@@ -9,6 +9,9 @@ return {
                         files = {
                             associations = { "*.php" }, -- Associar o PHP aos arquivos .php
                         },
+                        diagnostics = {
+                            fileComment = false,
+                        },
                     },
                 },
             })
