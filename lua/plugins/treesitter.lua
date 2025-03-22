@@ -7,9 +7,5 @@ return {
         require("nvim-treesitter.configs").setup({
             highlight = { enable = true },
         })
-
-        vim.filetype.add({
-            pattern = { [".*%.php"] = { "html", "css" } },
-        })
     end,
 }

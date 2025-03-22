@@ -1,32 +1,13 @@
 return {
-    -- PHP LSP
+    -- Instalar e configurar o LSP para PHP (Intelephense)
     {
-        "neoclide/coc.nvim", -- Usando o coc.nvim, que é altamente configurável e suporta vários LSPs, incluindo PHP
-        opts = {
-            -- Outras opções do coc podem ser configuradas aqui se necessário
-        },
-    },
-
-    -- HTML LSP
-    {
-        "nvim-treesitter/nvim-treesitter",
-        opts = {
-            ensure_installed = { "html" },
-        },
-    },
-
-    -- Configuração do servidor LSP PHP (Intelephense)
-    {
-        "hrsh7th/nvim-cmp", -- Autocompletar para nvim
-        dependencies = {
-            "neoclide/coc.nvim", -- Usando o coc.nvim para o LSP do PHP
-        },
+        "neovim/nvim-lspconfig", -- Configuração dos LSPs no Neovim
         opts = function()
             require("lspconfig").intelephense.setup({
                 settings = {
                     intelephense = {
                         files = {
-                            associations = { "*.php" },
+                            associations = { "*.php" }, -- Associar o PHP aos arquivos .php
                         },
                     },
                 },
@@ -34,31 +15,27 @@ return {
         end,
     },
 
-    -- LSP do HTML
+    -- Instalar o plugin de autocompletar
+    {
+        "hrsh7th/nvim-cmp", -- Autocompletar
+        dependencies = {
+            "hrsh7th/cmp-nvim-lsp", -- Integração do nvim-cmp com LSPs
+        },
+        opts = function()
+            local cmp = require("cmp")
+            cmp.setup({
+                sources = {
+                    { name = "nvim_lsp" }, -- Usar o LSP para autocompletar
+                },
+            })
+        end,
+    },
+
+    -- Instalar o LSP para PHP (Intelephense)
     {
         "williamboman/mason.nvim", -- Gerenciador de LSPs
         opts = {
-            ensure_installed = { "html-lsp" },
+            ensure_installed = { "intelephense" }, -- Garantir que o Intelephense seja instalado
         },
-    },
-
-    -- Integrar LSP de HTML no PHP
-    {
-        "williamboman/mason-lspconfig.nvim", -- Conectar com o LSP do mason
-        opts = function()
-            require("mason-lspconfig").setup({
-                ensure_installed = { "html-lsp", "intelephense" }, -- Instalar tanto o LSP do PHP quanto o do HTML
-            })
-        end,
-    },
-
-    -- Configuração do LSP para HTML
-    {
-        "neovim/nvim-lspconfig", -- Configurações para os servidores LSP
-        opts = function()
-            require("lspconfig").html.setup({
-                filetypes = { "php", "html" }, -- Configurar para funcionar em PHP e HTML
-            })
-        end,
     },
 }
