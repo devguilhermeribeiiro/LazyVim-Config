@@ -8,9 +8,8 @@ return {
             highlight = { enable = true },
         })
 
-        -- Associa arquivos .blade.php ao parser HTML/PHP
         vim.filetype.add({
-            pattern = { [".*%.blade%.php"] = { "html", "css" } },
+            pattern = { [".*%.php"] = { "html", "css" } },
         })
     end,
 }
