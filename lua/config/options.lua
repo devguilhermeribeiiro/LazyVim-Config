@@ -1,3 +1,7 @@
+-- LSP Server to use for PHP.
+-- Set to "intelephense" to use intelephense instead of phpactor.
+vim.g.lazyvim_php_lsp = "intelephense"
+
 -- Configuração de indentação no Neovim
 vim.o.smartindent = true -- Indentação inteligente
 vim.o.autoindent = true -- Mantém a indentação da linha anterior
