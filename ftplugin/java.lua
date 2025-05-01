@@ -3,7 +3,7 @@ local home = os.getenv("HOME")
 local jdtls_path = home .. "/.local/share/java/jdt-language-server"
 
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
-local workspace_dir = home .. "/.local/share/eclipse/" .. project_name
+local workspace_dir = home .. "/JavaProjects" .. project_name
 
 local config = {
     cmd = {
