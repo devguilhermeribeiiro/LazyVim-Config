@@ -1,6 +1,7 @@
 local jdtls = require("jdtls")
-
 local home = os.getenv("HOME")
+local jdtls_path = home .. "/.local/share/java/jdt-language-server"
+
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
 local workspace_dir = home .. "/.local/share/eclipse/" .. project_name
 
@@ -19,9 +20,9 @@ local config = {
         "--add-opens",
         "java.base/java.lang=ALL-UNNAMED",
         "-jar",
-        vim.fn.glob(home .. "/.local/share/nvim/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_*.jar"),
+        vim.fn.glob(jdtls_path .. "/plugins/org.eclipse.equinox.launcher_*.jar"),
         "-configuration",
-        home .. "/.local/share/nvim/mason/packages/jdtls/config_linux",
+        jdtls_path .. "/config_linux",
         "-data",
         workspace_dir,
     },
